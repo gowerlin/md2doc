@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-11-12
+
+### Added
+- **VSCode Extension**
+  - Complete VSCode extension implementation
+  - Right-click conversion from Explorer and Editor context menus
+  - Command Palette integration with 6 commands:
+    - Convert to Word (.docx)
+    - Convert to PDF
+    - Convert to Both (Word & PDF)
+    - Batch Convert Files
+    - Select Theme
+    - Initialize Configuration
+  - Status bar integration for quick access
+  - Extensive configuration options through VSCode settings
+  - Auto-save before conversion
+  - Success/error notifications with "Open File" action
+  - Theme selection UI
+  - Batch conversion with glob patterns
+  - Full integration with core md2doc library
+  
+- **Documentation**
+  - Complete VSCode extension README
+  - Installation and usage guides
+  - Configuration examples
+  - Troubleshooting section
+  - Command reference
+
+### Changed
+- Version bumped to 0.5.0
+- Updated main README with VSCode extension section
+
 ## [0.4.0] - 2025-11-12
 
 ### Added

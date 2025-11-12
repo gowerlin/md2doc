@@ -231,6 +231,39 @@ Claude: 開始批次轉換...
 
 詳細設定請參閱 [MCP_SETUP.md](./MCP_SETUP.md)
 
+## VSCode 延伸套件
+
+md2doc 提供 VSCode 延伸套件，直接在編輯器中轉換 Markdown 文件。
+
+### 安裝
+
+```bash
+cd vscode-extension
+npm install
+npm run compile
+npm run package
+```
+
+然後在 VSCode 中安裝生成的 `.vsix` 文件。
+
+### 功能
+
+- **右鍵選單轉換**：從檔案總管或編輯器右鍵選單直接轉換
+- **命令面板整合**：通過命令面板訪問所有轉換功能
+- **狀態列整合**：編輯 Markdown 時快速訪問轉換功能
+- **批次轉換**：使用 glob 模式批次轉換多個文件
+- **主題選擇**：圖形化介面選擇主題
+- **配置管理**：完整的 VSCode 設定整合
+
+### 使用範例
+
+1. 開啟 Markdown 文件
+2. 按 `Ctrl+Shift+P`（Mac: `Cmd+Shift+P`）
+3. 輸入 "md2doc" 並選擇轉換命令
+4. 或直接右鍵點擊文件選擇 "Convert to Word" / "Convert to PDF"
+
+詳細說明請參閱 [vscode-extension/README.md](./vscode-extension/README.md)
+
 ## 程式化使用
 
 ```typescript
