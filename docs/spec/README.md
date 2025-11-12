@@ -12,7 +12,7 @@
 本規格文檔包含兩種格式，可直接交付給 AI 開發工具使用：
 
 ### 1. BMAD Story Format
-**檔案**: `md2doc-spec-bmad.md`
+**檔案**: `bmad/md2doc-spec-bmad.md`
 
 這是完整的單一檔案規格，包含：
 - ✅ Story Description（專案描述）
@@ -258,8 +258,8 @@ cat spec-kit/specify/cli-tool.md
 
 ## 🔗 相關連結
 
-- **SmartSpec 工具**: https://github.com/smartspec/smartspec
-- **BMAD Story Format**: https://github.com/bmad-format/spec
+- **SmartSpec 工具**: https://github.com/gowerlin/SmartSpec
+- **BMAD-METHOD**: https://github.com/bmad-code-org/BMAD-METHOD
 - **GitHub Spec-Kit**: https://github.com/github/spec-kit
 - **Markdown 規範**: https://commonmark.org/
 - **Mermaid 文檔**: https://mermaid.js.org/
@@ -270,9 +270,7 @@ cat spec-kit/specify/cli-tool.md
 
 如有問題或建議，請聯繫：
 
-- **專案維護者**: [待填寫]
-- **Email**: [待填寫]
-- **GitHub Issues**: [待填寫]
+- **GitHub Issues**: https://github.com/gowerlin/md2doc/issues
 
 ---
 
