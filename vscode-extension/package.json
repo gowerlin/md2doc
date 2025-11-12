@@ -23,7 +23,7 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
@@ -107,13 +107,23 @@
       "properties": {
         "md2doc.defaultFormat": {
           "type": "string",
-          "enum": ["docx", "pdf", "both"],
+          "enum": [
+            "docx",
+            "pdf",
+            "both"
+          ],
           "default": "docx",
           "description": "Default output format for conversions"
         },
         "md2doc.defaultTheme": {
           "type": "string",
-          "enum": ["default", "modern", "academic", "minimal", "dark"],
+          "enum": [
+            "default",
+            "modern",
+            "academic",
+            "minimal",
+            "dark"
+          ],
           "default": "default",
           "description": "Default theme for styling documents"
         },
@@ -139,7 +149,10 @@
         },
         "md2doc.pdfPageSize": {
           "type": "string",
-          "enum": ["A4", "Letter"],
+          "enum": [
+            "A4",
+            "Letter"
+          ],
           "default": "A4",
           "description": "PDF page size"
         },
@@ -150,7 +163,12 @@
         },
         "md2doc.mermaidTheme": {
           "type": "string",
-          "enum": ["default", "dark", "forest", "neutral"],
+          "enum": [
+            "default",
+            "dark",
+            "forest",
+            "neutral"
+          ],
           "default": "default",
           "description": "Theme for Mermaid diagrams"
         }
@@ -158,20 +176,25 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run package-webpack",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package",
+    "package-webpack": "webpack --mode production --devtool hidden-source-map",
+    "watch-webpack": "webpack --watch",
+    "package": "npm run package-webpack && vsce package",
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
     "@types/node": "^20.10.0",
+    "@types/vscode": "^1.80.0",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0",
+    "@vscode/vsce": "^2.22.0",
     "eslint": "^8.54.0",
+    "ts-loader": "^9.5.4",
     "typescript": "^5.3.0",
-    "@vscode/vsce": "^2.22.0"
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
   },
   "dependencies": {
     "md2doc": "file:../"

@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "compile",
+      "problemMatcher": "$tsc",
+      "isBackground": true,
+      "label": "npm: compile",
+      "detail": "編譯 TypeScript extension 程式碼",
+      "presentation": {
+        "reveal": "never"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "problemMatcher": "$tsc-watch",
+      "isBackground": true,
+      "label": "npm: watch",
+      "detail": "監視並自動編譯 TypeScript 變更",
+      "presentation": {
+        "reveal": "never"
+      }
+    }
+  ]
+}
