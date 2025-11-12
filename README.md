@@ -12,6 +12,7 @@ Markdown 多格式轉換工具 - 將 Markdown 轉換為 Word、PDF 等格式
 - ✅ **圖片處理**：支援本地和遠程圖片
 - ✅ **批次處理**：支援 glob 模式批次轉換多個文件
 - ✅ **配置系統**：YAML/JSON 配置檔支援
+- ✅ **MCP Server**：Claude Desktop 整合，AI 助手可直接調用
 - ✅ **CLI 工具**：簡單易用的命令列介面
 
 ## 安裝
@@ -189,6 +190,46 @@ md2doc themes
 ```
 
 列出所有可用主題。
+
+## MCP Server 整合
+
+md2doc 支援 Model Context Protocol (MCP)，可與 Claude Desktop 整合，讓 AI 助手直接調用轉換功能。
+
+### 設定
+
+在 Claude Desktop 配置文件中添加：
+
+**macOS/Linux**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "md2doc": {
+      "command": "md2doc-mcp",
+      "env": {
+        "PUPPETEER_EXECUTABLE_PATH": "/usr/bin/google-chrome"
+      }
+    }
+  }
+}
+```
+
+### 使用範例
+
+在 Claude Desktop 中，您可以自然地請求轉換：
+
+```
+User: 請將我的 report.md 轉換為 Word 文件，使用 modern 主題。
+Claude: 我來幫您轉換...
+✓ 成功將 report.md 轉換為 report.docx
+
+User: 批次轉換 docs 資料夾中的所有 Markdown 文件為 PDF。
+Claude: 開始批次轉換...
+✓ 批次轉換完成：5 個文件成功轉換
+```
+
+詳細設定請參閱 [MCP_SETUP.md](./MCP_SETUP.md)
 
 ## 程式化使用
 

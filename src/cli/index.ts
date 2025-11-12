@@ -15,7 +15,7 @@ const program = new Command();
 program
   .name('md2doc')
   .description('Markdown 多格式轉換工具 - 將 Markdown 轉換為 Word、PDF 等格式')
-  .version('0.3.0');
+  .version('0.4.0');
 
 program
   .command('convert')

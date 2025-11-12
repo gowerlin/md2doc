@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2025-11-12
+
+### Added
+- **MCP Server Integration**
+  - Full Model Context Protocol (MCP) server implementation
+  - Claude Desktop integration support
+  - Four MCP tools:
+    - `convert_markdown`: Convert single Markdown files
+    - `batch_convert`: Batch conversion with glob patterns
+    - `list_themes`: List available themes
+    - `preview`: Generate conversion previews
+  - Comprehensive error handling and validation
+  - JSON-based request/response handling
+  
+- **Claude Integration**
+  - Natural language interface for file conversion
+  - Automatic tool selection based on user intent
+  - Support for all md2doc features through Claude
+  - Configuration guide for Claude Desktop
+  
+- **Documentation**
+  - Complete MCP_SETUP.md guide
+  - Claude Desktop configuration examples
+  - Usage examples and troubleshooting
+  - Security and permissions documentation
+
+### Changed
+- Added `md2doc-mcp` binary for MCP server
+- Updated README with MCP integration section
+- Version bumped to 0.4.0
+
 ## [0.3.0] - 2025-11-12
 
 ### Added

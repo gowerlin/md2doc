@@ -1,11 +1,12 @@
 {
   "name": "md2doc",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Markdown 多格式轉換工具 - 將 Markdown 轉換為 Word、PDF 等格式",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "md2doc": "dist/cli/index.js"
+    "md2doc": "dist/cli/index.js",
+    "md2doc-mcp": "dist/mcp/server.js"
   },
   "scripts": {
     "build": "tsc",
@@ -35,7 +36,8 @@
     "yaml": "^2.3.4",
     "inquirer": "^9.2.12",
     "cli-progress": "^3.12.0",
-    "glob": "^10.3.10"
+    "glob": "^10.3.10",
+    "@modelcontextprotocol/sdk": "^0.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
