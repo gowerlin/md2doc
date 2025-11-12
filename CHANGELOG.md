@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-11-12
+
+### Added
+- **Configuration System**
+  - YAML and JSON configuration file support
+  - Auto-detection of config files (.md2docrc.yml, md2doc.config.json, etc.)
+  - `init` command to create default configuration file
+  - Configuration merging with defaults
+  - Configurable output settings, themes, PDF/Word options, Mermaid, and images
+  
+- **Batch Processing**
+  - `batch` command for explicit batch operations
+  - Glob pattern support (*.md, **/*.md)
+  - Multiple file input support in `convert` command
+  - Parallel processing option with `--parallel` flag
+  - Progress reporting and batch statistics
+  - Auto-create output directories
+  - Skip/overwrite handling with `--force` flag
+  
+- **CLI Enhancements**
+  - `--quiet` flag for silent operation
+  - `--verbose` flag for detailed logging
+  - `--config` flag to specify configuration file
+  - `--force` flag to overwrite existing files without prompt
+  - Enhanced error reporting
+
+### Changed
+- `convert` command now supports multiple input files and glob patterns
+- CLI now auto-detects whether to use batch or single file processing
+- Improved output path handling for batch operations
+
 ## [0.1.0] - 2025-11-12
 
 ### Added
