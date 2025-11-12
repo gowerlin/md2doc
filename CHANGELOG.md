@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-11-12
+
+### Added
+- **Full Puppeteer Integration**
+  - Complete Mermaid diagram rendering using Puppeteer and mermaid.js
+  - Real-time rendering of all 8 Mermaid diagram types
+  - Support for PNG and SVG output formats
+  - Configurable themes for Mermaid diagrams
+  - Fallback to placeholder mode if Puppeteer unavailable
+  
+- **PDF Generation**
+  - Full PDF generation using Puppeteer (HTML to PDF)
+  - Configurable page size (A4, Letter)
+  - Customizable margins
+  - Optional header and footer support
+  - Page numbering support
+  - Environment variable support (PUPPETEER_EXECUTABLE_PATH) for custom Chrome/Chromium paths
+
+- **Resource Management**
+  - Proper cleanup of Puppeteer browser instances
+  - Automatic resource cleanup after conversion
+  - Error handling with graceful degradation
+
+### Changed
+- Mermaid renderer now uses Puppeteer for real diagram rendering instead of placeholders
+- PDF converter now generates actual PDF files instead of HTML
+- Converter now properly cleans up resources after conversion
+- Updated from `puppeteer-core` to full `puppeteer` package
+
+### Fixed
+- Mermaid diagrams now render correctly with proper SVG output
+- PDF generation no longer just creates HTML files
+
 ## [0.2.0] - 2025-11-12
 
 ### Added

@@ -1,6 +1,6 @@
 {
   "name": "md2doc",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Markdown 多格式轉換工具 - 將 Markdown 轉換為 Word、PDF 等格式",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,7 +28,7 @@
   "dependencies": {
     "marked": "^11.0.0",
     "docx": "^8.5.0",
-    "puppeteer-core": "^21.0.0",
+    "puppeteer": "^21.0.0",
     "mermaid": "^10.6.0",
     "sharp": "^0.33.0",
     "commander": "^11.1.0",

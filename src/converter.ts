@@ -12,6 +12,7 @@ import { MermaidRenderer } from './core/mermaid-renderer';
 import { ThemeLoader } from './core/theme-loader';
 import { WordConverter } from './converters/word-converter';
 import { PdfConverter } from './converters/pdf-converter';
+import { PdfGenerator } from './core/pdf-generator';
 import type { ConversionOptions } from './types/config';
 import type { MarkdownAST, ImageNode, MermaidNode } from './types/ast';
 
@@ -20,47 +21,54 @@ export class Converter {
   private imageHandler: ImageHandler;
   private mermaidRenderer: MermaidRenderer;
   private themeLoader: ThemeLoader;
+  private pdfGenerator: PdfGenerator;
 
   constructor() {
     this.parser = new MarkdownParser();
     this.imageHandler = new ImageHandler();
     this.mermaidRenderer = new MermaidRenderer();
     this.themeLoader = new ThemeLoader();
+    this.pdfGenerator = new PdfGenerator();
   }
 
   /**
    * Convert Markdown file to specified format
    */
   async convert(options: ConversionOptions): Promise<void> {
-    // Read input file
-    const markdown = await fs.readFile(options.inputPath, 'utf-8');
+    try {
+      // Read input file
+      const markdown = await fs.readFile(options.inputPath, 'utf-8');
 
-    // Parse to AST
-    let ast = this.parser.parse(markdown);
+      // Parse to AST
+      let ast = this.parser.parse(markdown);
 
-    // Process images
-    ast = await this.processImages(ast, options.inputPath);
+      // Process images
+      ast = await this.processImages(ast, options.inputPath);
 
-    // Process Mermaid diagrams
-    ast = await this.processMermaid(ast);
+      // Process Mermaid diagrams
+      ast = await this.processMermaid(ast);
 
-    // Load theme
-    const theme = this.themeLoader.loadTheme(options.theme || 'default');
+      // Load theme
+      const theme = this.themeLoader.loadTheme(options.theme || 'default');
 
-    // Determine output format and path
-    const format = options.output?.format || 'docx';
-    const outputPath = options.outputPath || this.generateOutputPath(options.inputPath, format);
+      // Determine output format and path
+      const format = options.output?.format || 'docx';
+      const outputPath = options.outputPath || this.generateOutputPath(options.inputPath, format);
 
-    // Convert to target format
-    if (format === 'docx' || format === 'both') {
-      await this.convertToWord(ast, outputPath.replace(/\.(pdf|docx)$/, '.docx'), theme);
+      // Convert to target format
+      if (format === 'docx' || format === 'both') {
+        await this.convertToWord(ast, outputPath.replace(/\.(pdf|docx)$/, '.docx'), theme);
+      }
+
+      if (format === 'pdf' || format === 'both') {
+        await this.convertToPdf(ast, outputPath.replace(/\.(pdf|docx)$/, '.pdf'), theme, options);
+      }
+
+      console.log(`Conversion complete: ${outputPath}`);
+    } finally {
+      // Cleanup resources
+      await this.cleanup();
     }
-
-    if (format === 'pdf' || format === 'both') {
-      await this.convertToPdf(ast, outputPath.replace(/\.(pdf|docx)$/, '.pdf'), theme);
-    }
-
-    console.log(`Conversion complete: ${outputPath}`);
   }
 
   /**
@@ -105,7 +113,7 @@ export class Converter {
         const mermaidNode = node as MermaidNode;
         try {
           const imageBuffer = await this.mermaidRenderer.render(mermaidNode.code);
-          const dataUri = this.imageHandler.toDataUri(imageBuffer, 'image/svg+xml');
+          const dataUri = this.imageHandler.toDataUri(imageBuffer, 'image/png');
           mermaidNode.renderedImage = dataUri;
         } catch (error) {
           console.error('Failed to render Mermaid diagram:', error);
@@ -148,17 +156,18 @@ export class Converter {
   /**
    * Convert AST to PDF document
    */
-  private async convertToPdf(ast: MarkdownAST, outputPath: string, theme: any): Promise<void> {
+  private async convertToPdf(ast: MarkdownAST, outputPath: string, theme: any, options: ConversionOptions): Promise<void> {
     const converter = new PdfConverter(theme);
     const html = converter.convertToHtml(ast);
 
-    // For now, just save the HTML
-    // In production, use puppeteer to convert HTML to PDF
-    const htmlPath = outputPath.replace('.pdf', '.html');
-    await fs.writeFile(htmlPath, html);
+    // Use Puppeteer to generate PDF
+    await this.pdfGenerator.generatePdf(html, outputPath, {
+      pageSize: options.pdf?.pageSize || 'A4',
+      margin: options.pdf?.margin || '2cm',
+      displayHeaderFooter: options.pdf?.headerFooter || false
+    });
 
-    console.log(`HTML created (PDF conversion requires puppeteer): ${htmlPath}`);
-    console.log(`Note: Full PDF support will be added in next iteration`);
+    console.log(`PDF document created: ${outputPath}`);
   }
 
   /**
@@ -167,5 +176,13 @@ export class Converter {
   private generateOutputPath(inputPath: string, format: string): string {
     const ext = format === 'both' ? 'docx' : format;
     return inputPath.replace(/\.md$/, `.${ext}`);
+  }
+
+  /**
+   * Cleanup resources
+   */
+  async cleanup(): Promise<void> {
+    await this.mermaidRenderer.close();
+    await this.pdfGenerator.close();
   }
 }

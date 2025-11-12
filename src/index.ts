@@ -7,6 +7,7 @@ export { Converter } from './converter';
 export { MarkdownParser } from './core/parser';
 export { ImageHandler } from './core/image-handler';
 export { MermaidRenderer } from './core/mermaid-renderer';
+export { PdfGenerator } from './core/pdf-generator';
 export { ThemeLoader, DEFAULT_THEMES } from './core/theme-loader';
 export { WordConverter } from './converters/word-converter';
 export { PdfConverter } from './converters/pdf-converter';
