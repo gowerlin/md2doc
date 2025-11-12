@@ -76,6 +76,8 @@ bun.lockb
 # VSCode 延伸套件建置
 extension/*.vsix
 extension/out/
+vscode-extension/*.vsix
+vscode-extension/out/
 
 # MCP Server 執行檔
 mcp-server/dist/
