@@ -21,6 +21,39 @@ npm install
 npm run build
 ```
 
+### Puppeteer 設定（PDF 和 Mermaid 功能）
+
+md2doc 使用 Puppeteer 來：
+- 渲染 Mermaid 圖表
+- 生成 PDF 文件
+
+**選項 1：自動下載 Chromium（最簡單）**
+```bash
+npm install  # Puppeteer 會自動下載 Chromium (~170MB)
+```
+
+**選項 2：使用系統 Chrome**
+```bash
+# 跳過 Chromium 下載
+PUPPETEER_SKIP_DOWNLOAD=true npm install
+
+# 設定 Chrome 路徑
+export PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome  # Linux
+# or
+export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"  # macOS
+```
+
+**安裝系統 Chrome：**
+- Ubuntu/Debian: `sudo apt-get install chromium-browser`
+- macOS: `brew install --cask google-chrome`
+- Windows: 從 https://www.google.com/chrome/ 下載
+
+詳細設定說明請參閱 [PUPPETEER_SETUP.md](./PUPPETEER_SETUP.md)
+
+**注意**：如果沒有 Puppeteer，工具仍可運行，但：
+- Mermaid 圖表將使用佔位符
+- PDF 輸出將生成 HTML 文件
+
 ## 使用方式
 
 ### 基本轉換
