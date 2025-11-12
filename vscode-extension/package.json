@@ -1,0 +1,184 @@
+{
+  "name": "md2doc-vscode",
+  "displayName": "md2doc - Markdown Converter",
+  "description": "Convert Markdown files to Word (.docx) and PDF with full Mermaid diagram support",
+  "version": "0.4.0",
+  "publisher": "md2doc",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Formatters"
+  ],
+  "keywords": [
+    "markdown",
+    "word",
+    "pdf",
+    "docx",
+    "converter",
+    "mermaid"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "md2doc.convertToWord",
+        "title": "Convert to Word (.docx)",
+        "category": "md2doc"
+      },
+      {
+        "command": "md2doc.convertToPdf",
+        "title": "Convert to PDF",
+        "category": "md2doc"
+      },
+      {
+        "command": "md2doc.convertToBoth",
+        "title": "Convert to Both (Word & PDF)",
+        "category": "md2doc"
+      },
+      {
+        "command": "md2doc.batchConvert",
+        "title": "Batch Convert Files",
+        "category": "md2doc"
+      },
+      {
+        "command": "md2doc.selectTheme",
+        "title": "Select Theme",
+        "category": "md2doc"
+      },
+      {
+        "command": "md2doc.initConfig",
+        "title": "Initialize Configuration",
+        "category": "md2doc"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .md",
+          "command": "md2doc.convertToWord",
+          "group": "md2doc@1"
+        },
+        {
+          "when": "resourceExtname == .md",
+          "command": "md2doc.convertToPdf",
+          "group": "md2doc@2"
+        },
+        {
+          "when": "resourceExtname == .md",
+          "command": "md2doc.convertToBoth",
+          "group": "md2doc@3"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "editorLangId == markdown",
+          "command": "md2doc.convertToWord",
+          "group": "md2doc@1"
+        },
+        {
+          "when": "editorLangId == markdown",
+          "command": "md2doc.convertToPdf",
+          "group": "md2doc@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "md2doc.convertToWord",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "md2doc.convertToPdf",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "md2doc.convertToBoth",
+          "when": "editorLangId == markdown"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "md2doc",
+      "properties": {
+        "md2doc.defaultFormat": {
+          "type": "string",
+          "enum": ["docx", "pdf", "both"],
+          "default": "docx",
+          "description": "Default output format for conversions"
+        },
+        "md2doc.defaultTheme": {
+          "type": "string",
+          "enum": ["default", "modern", "academic", "minimal", "dark"],
+          "default": "default",
+          "description": "Default theme for styling documents"
+        },
+        "md2doc.outputDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Default output directory (empty = same as source file)"
+        },
+        "md2doc.autoSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically save file before conversion"
+        },
+        "md2doc.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show success/error notifications"
+        },
+        "md2doc.puppeteerExecutablePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Chrome/Chromium executable (for PDF and Mermaid)"
+        },
+        "md2doc.pdfPageSize": {
+          "type": "string",
+          "enum": ["A4", "Letter"],
+          "default": "A4",
+          "description": "PDF page size"
+        },
+        "md2doc.pdfMargin": {
+          "type": "string",
+          "default": "2cm",
+          "description": "PDF page margins"
+        },
+        "md2doc.mermaidTheme": {
+          "type": "string",
+          "enum": ["default", "dark", "forest", "neutral"],
+          "default": "default",
+          "description": "Theme for Mermaid diagrams"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^2.22.0"
+  },
+  "dependencies": {
+    "md2doc": "file:../"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gowerlin/md2doc.git"
+  },
+  "license": "MIT"
+}

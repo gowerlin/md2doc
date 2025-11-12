@@ -1,0 +1,54 @@
+# Git
+.git
+.gitignore
+.github
+
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build artifacts
+dist
+out
+*.tgz
+*.vsix
+
+# Tests
+coverage
+.nyc_output
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (not needed in container)
+docs
+*.md
+!package.json
+!package-lock.json
+
+# Examples
+example.md
+example.html
+
+# Temporary files
+tmp
+temp
+*.tmp
+
+# VSCode extension (not needed in CLI container)
+vscode-extension
+
+# Config files
+.eslintrc*
+.prettierrc*
+tsconfig.test.json
+jest.config.js

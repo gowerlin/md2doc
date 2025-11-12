@@ -49,9 +49,11 @@ Desktop.ini
 # 輸出檔案（轉換結果）
 *.docx
 *.pdf
+*.html
 # 例外：測試用的預期輸出
 !tests/fixtures/**/*.docx
 !tests/fixtures/**/*.pdf
+!tests/fixtures/**/*.html
 
 # 打包產物
 *.exe

@@ -1,0 +1,78 @@
+{
+  "name": "md2doc",
+  "version": "0.5.0",
+  "description": "Markdown 多格式轉換工具 - 將 Markdown 轉換為 Word、PDF 等格式",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "md2doc": "dist/cli/index.js",
+    "md2doc-mcp": "dist/mcp/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build && npm test",
+    "prepack": "npm run build",
+    "release:major": "npm version major && git push --follow-tags",
+    "release:minor": "npm version minor && git push --follow-tags",
+    "release:patch": "npm version patch && git push --follow-tags"
+  },
+  "keywords": [
+    "markdown",
+    "word",
+    "pdf",
+    "docx",
+    "converter",
+    "mermaid"
+  ],
+  "author": "md2doc contributors",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^11.0.0",
+    "docx": "^8.5.0",
+    "puppeteer": "^24.0.0",
+    "mermaid": "^10.6.0",
+    "sharp": "^0.33.0",
+    "commander": "^11.1.0",
+    "yaml": "^2.3.4",
+    "inquirer": "^9.2.12",
+    "cli-progress": "^3.12.0",
+    "glob": "^10.3.10",
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/marked": "^6.0.0",
+    "@types/inquirer": "^9.0.7",
+    "@types/cli-progress": "^3.11.5",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.10",
+    "ts-jest": "^29.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gowerlin/md2doc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gowerlin/md2doc/issues"
+  },
+  "homepage": "https://github.com/gowerlin/md2doc#readme",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
+}

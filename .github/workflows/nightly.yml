@@ -1,0 +1,85 @@
+name: Nightly Build
+
+on:
+  schedule:
+    # Run at 2 AM UTC every day
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  nightly:
+    name: Build nightly artifacts
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: develop
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Install Chromium
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+      env:
+        PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
+      continue-on-error: true
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Create NPM package
+      run: npm pack
+    
+    - name: Build VSCode Extension
+      run: |
+        cd vscode-extension
+        npm ci
+        npm run compile
+        npm run package
+    
+    - name: Get commit info
+      id: commit
+      run: |
+        echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+    
+    - name: Upload nightly artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nightly-${{ steps.commit.outputs.date }}-${{ steps.commit.outputs.sha }}
+        path: |
+          md2doc-*.tgz
+          vscode-extension/*.vsix
+        retention-days: 30
+    
+    - name: Create or update nightly release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: nightly
+        name: Nightly Build (${{ steps.commit.outputs.date }})
+        body: |
+          Automated nightly build from develop branch
+          
+          **Commit:** ${{ steps.commit.outputs.sha }}
+          **Date:** ${{ steps.commit.outputs.date }}
+          
+          ⚠️ This is a development build and may contain bugs.
+        draft: false
+        prerelease: true
+        files: |
+          md2doc-*.tgz
+          vscode-extension/*.vsix
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
