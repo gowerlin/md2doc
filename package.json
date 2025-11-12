@@ -34,7 +34,7 @@
   "dependencies": {
     "marked": "^11.0.0",
     "docx": "^8.5.0",
-    "puppeteer": "^21.0.0",
+    "puppeteer": "^24.0.0",
     "mermaid": "^10.6.0",
     "sharp": "^0.33.0",
     "commander": "^11.1.0",
