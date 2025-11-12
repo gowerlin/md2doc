@@ -10,6 +10,8 @@ export { MermaidRenderer } from './core/mermaid-renderer';
 export { ThemeLoader, DEFAULT_THEMES } from './core/theme-loader';
 export { WordConverter } from './converters/word-converter';
 export { PdfConverter } from './converters/pdf-converter';
+export { BatchProcessor } from './cli/batch-processor';
+export { ConfigLoader } from './config/config-loader';
 
 export type { 
   MarkdownAST, 
