@@ -4,6 +4,7 @@
   "description": "Convert Markdown files to Word (.docx) and PDF with full Mermaid diagram support",
   "version": "0.4.0",
   "publisher": "md2doc",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.80.0"
   },
