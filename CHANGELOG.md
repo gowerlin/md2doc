@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **GitHub CI/CD Workflows**
+  - Complete CI workflow for automated testing and validation
+  - Release workflow with automated GitHub Releases, NPM publishing, and VSCode Marketplace publishing
+  - Nightly build workflow for development builds
+  - CodeQL security analysis workflow
+  - Docker build and publish workflow for multi-platform containers
+  - Comprehensive workflow documentation and troubleshooting guides
+
+- **Distribution & Packaging**
+  - Docker support with multi-stage builds and Alpine Linux base
+  - NPM package with proper files configuration
+  - VSCode Extension packaging (.vsix)
+  - GitHub Container Registry (ghcr.io) integration
+  - Multi-platform Docker images (linux/amd64, linux/arm64)
+
+- **Release Automation**
+  - Automated version bumping scripts (major, minor, patch)
+  - Changelog extraction for release notes
+  - Artifact upload to GitHub Releases
+  - Automated NPM and VSCode Marketplace publishing
+  - Docker image tagging with semantic versioning
+
+- **Documentation**
+  - Complete RELEASE.md guide for creating releases
+  - Workflow README with detailed usage instructions
+  - CI/CD badge support
+  - Docker usage examples
+  - Troubleshooting guides for common CI/CD issues
+
+### Changed
+- Updated package.json with repository information and files list
+- Updated README with CI/CD status badges
+- Updated README with multiple installation methods (NPM, Docker, Source)
+- Added Docker and NPM installation/usage examples
+
 ## [0.5.0] - 2025-11-12
 
 ### Added

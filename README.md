@@ -1,5 +1,12 @@
 # md2doc
 
+[![CI](https://github.com/gowerlin/md2doc/actions/workflows/ci.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/ci.yml)
+[![Release](https://github.com/gowerlin/md2doc/actions/workflows/release.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/release.yml)
+[![CodeQL](https://github.com/gowerlin/md2doc/actions/workflows/codeql.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/codeql.yml)
+[![Docker](https://github.com/gowerlin/md2doc/actions/workflows/docker.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/docker.yml)
+[![npm version](https://badge.fury.io/js/md2doc.svg)](https://www.npmjs.com/package/md2doc)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Markdown 多格式轉換工具 - 將 Markdown 轉換為 Word、PDF 等格式
 
 ## 功能特點
@@ -13,14 +20,35 @@ Markdown 多格式轉換工具 - 將 Markdown 轉換為 Word、PDF 等格式
 - ✅ **批次處理**：支援 glob 模式批次轉換多個文件
 - ✅ **配置系統**：YAML/JSON 配置檔支援
 - ✅ **MCP Server**：Claude Desktop 整合，AI 助手可直接調用
+- ✅ **VSCode Extension**：VS Code 編輯器整合
 - ✅ **CLI 工具**：簡單易用的命令列介面
 
 ## 安裝
 
+### 方式 1: 從 NPM 安裝（推薦）
+
 ```bash
+npm install -g md2doc
+```
+
+### 方式 2: 從 Docker Hub 使用
+
+```bash
+docker pull ghcr.io/gowerlin/md2doc:latest
+```
+
+### 方式 3: 從原始碼建置
+
+```bash
+git clone https://github.com/gowerlin/md2doc.git
+cd md2doc
 npm install
 npm run build
 ```
+
+### 方式 4: VSCode Extension
+
+在 VS Code 中搜索 "md2doc" 並安裝，或從 [Releases](https://github.com/gowerlin/md2doc/releases) 下載 .vsix 文件手動安裝。
 
 ### Puppeteer 設定（PDF 和 Mermaid 功能）
 
@@ -57,7 +85,39 @@ export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS
 
 ## 使用方式
 
-### 基本轉換
+### CLI 使用（已安裝 NPM 包）
+
+```bash
+# 轉換單一文件
+md2doc convert input.md -o output.docx
+
+# 使用主題
+md2doc convert input.md -t modern -o output.docx
+
+# 轉換為 PDF
+md2doc convert input.md -f pdf -o output.pdf
+
+# 查看所有主題
+md2doc themes
+
+# 初始化配置
+md2doc init
+```
+
+### Docker 使用
+
+```bash
+# 轉換單一文件
+docker run -v $(pwd):/workspace ghcr.io/gowerlin/md2doc:latest convert example.md -o output.docx
+
+# 批次轉換
+docker run -v $(pwd):/workspace ghcr.io/gowerlin/md2doc:latest batch "docs/**/*.md" -o output/
+
+# 查看主題
+docker run ghcr.io/gowerlin/md2doc:latest themes
+```
+
+### 從原始碼使用
 
 ```bash
 # 轉換單一文件
