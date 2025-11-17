@@ -4,6 +4,7 @@
 [![Release](https://github.com/gowerlin/md2doc/actions/workflows/release.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/release.yml)
 [![CodeQL](https://github.com/gowerlin/md2doc/actions/workflows/codeql.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/codeql.yml)
 [![Docker](https://github.com/gowerlin/md2doc/actions/workflows/docker.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/docker.yml)
+[![Nightly Build](https://github.com/gowerlin/md2doc/actions/workflows/nightly.yml/badge.svg)](https://github.com/gowerlin/md2doc/actions/workflows/nightly.yml)
 [![npm version](https://badge.fury.io/js/md2doc.svg)](https://www.npmjs.com/package/md2doc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
