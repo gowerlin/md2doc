@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: develop
+        ref: main
     
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -72,7 +72,7 @@ jobs:
         tag_name: nightly
         name: Nightly Build (${{ steps.commit.outputs.date }})
         body: |
-          Automated nightly build from develop branch
+          Automated nightly build from main branch
           
           **Commit:** ${{ steps.commit.outputs.sha }}
           **Date:** ${{ steps.commit.outputs.date }}
