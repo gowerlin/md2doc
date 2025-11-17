@@ -27,19 +27,18 @@ This project follows a Git Flow branching model:
 
 ## Setting Up the Develop Branch
 
-If the `develop` branch doesn't exist yet, create it from `main`:
+If the `develop` branch doesn't exist yet, repository maintainers can use the automated setup script:
 
 ```bash
 # Clone the repository
 git clone https://github.com/gowerlin/md2doc.git
 cd md2doc
 
-# Create develop branch from main
-git checkout main
-git pull origin main
-git checkout -b develop
-git push -u origin develop
+# Run the setup script
+bash setup-develop-branch.sh
 ```
+
+The script will create the develop branch from main and push it to origin with confirmation prompts.
 
 ## Development Workflow
 
@@ -161,7 +160,7 @@ Releases are managed by maintainers:
 
 - Node.js 18+
 - npm or yarn
-- TypeScript 5.3+
+- TypeScript (see `package.json` for version requirements)
 - (Optional) Chromium for PDF/Mermaid features
 
 ### Setup

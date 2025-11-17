@@ -19,8 +19,8 @@ if ! git rev-parse --git-dir > /dev/null 2>&1; then
 fi
 
 # Check if we're in the md2doc repository
-if ! git remote get-url origin | grep -q "md2doc"; then
-    echo "Warning: This doesn't appear to be the md2doc repository"
+if ! git remote get-url origin | grep -q "gowerlin/md2doc"; then
+    echo "Warning: This doesn't appear to be the gowerlin/md2doc repository"
     read -p "Continue anyway? (y/n) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
