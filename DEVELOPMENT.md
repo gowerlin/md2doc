@@ -185,13 +185,32 @@ md2doc/
 - 批次處理測試
 - 錯誤處理測試
 
+## 分支策略
+
+本專案採用 Git Flow 分支模型：
+
+### 主要分支
+- **`main`**: 生產環境程式碼，所有發布版本從此分支標記
+- **`develop`**: 開發整合分支，功能開發完成後合併到此分支
+
+### 支援分支
+- **功能分支**: 從 `develop` 分支建立新功能
+  - 命名：`feature/功能名稱` 或 `copilot/功能名稱`
+  - 合併回：`develop`
+
+- **修復分支**: 從 `main` 分支建立緊急修復
+  - 命名：`hotfix/問題描述`
+  - 合併回：`main` 和 `develop`
+
+詳細貢獻指南請參閱 [CONTRIBUTING.md](./CONTRIBUTING.md)
+
 ## 貢獻指南
 
 1. Fork 專案
-2. 建立功能分支 (`git checkout -b feature/amazing-feature`)
+2. 從 `develop` 建立功能分支 (`git checkout -b feature/amazing-feature`)
 3. 提交變更 (`git commit -m 'Add amazing feature'`)
 4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 開啟 Pull Request
+5. 對 `develop` 分支開啟 Pull Request
 
 ### Pull Request 檢查清單
 - [ ] 所有測試通過

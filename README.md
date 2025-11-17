@@ -423,3 +423,17 @@ MIT License
 
 歡迎提交 Issue 和 Pull Request！
 
+本專案採用 Git Flow 分支模型：
+- 請從 `develop` 分支建立功能分支
+- Pull Request 應該對 `develop` 分支提出
+- 詳細指南請參閱 [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+快速開始：
+```bash
+git checkout develop
+git checkout -b feature/your-feature
+# 進行開發...
+git push origin feature/your-feature
+# 然後對 develop 分支建立 Pull Request
+```
+

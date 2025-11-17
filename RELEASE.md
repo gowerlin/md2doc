@@ -2,6 +2,17 @@
 
 This guide explains how to create releases for the md2doc project.
 
+## Branching Strategy
+
+This project follows Git Flow:
+- **`main`**: Production releases only
+- **`develop`**: Active development and integration branch
+- **Feature branches**: Created from `develop`, merged back to `develop`
+- **Release branches**: Created from `develop` to prepare releases
+- **Hotfix branches**: Created from `main` for urgent fixes
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed branching workflow.
+
 ## Overview
 
 The md2doc project uses automated GitHub Actions workflows for releases. Each release includes:
